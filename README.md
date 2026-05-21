@@ -14,7 +14,7 @@ sur un cluster Kubernetes local (Minikube) en couvrant :
 | 1      | Docker (Dockerfile, build, run)        |   5    |
 | 2      | Ressources Kubernetes (Pod, Deployment, Services) | 9 |
 | 3      | Configuration & stockage (CM, Secret, PVC) |  4   |
-| —      | Livrables (YAML, README, capture)      |   2    |
+| -      | Livrables (YAML, README, capture)      |   2    |
 
 ---
 
