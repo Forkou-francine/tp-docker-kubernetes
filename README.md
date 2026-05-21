@@ -1,11 +1,10 @@
 # TP Docker & Kubernetes
 
 **Auteur :** Ange PENE FORKOU
-**Formation :** RNCP 36921 — Expert(e) en Ingénierie des Données — EPSI
 
 ---
 
-## 🎯 Objectif
+## Objectif
 
 Containeriser une application web minimaliste (Python / Flask), puis la déployer
 sur un cluster Kubernetes local (Minikube) en couvrant :
@@ -19,7 +18,7 @@ sur un cluster Kubernetes local (Minikube) en couvrant :
 
 ---
 
-## 🗂️ Arborescence du repo
+## Arborescence du repo
 
 ```
 tp-docker-kubernetes/
@@ -41,7 +40,7 @@ tp-docker-kubernetes/
 
 ---
 
-## ⚙️ Prérequis
+## Prérequis
 
 - Docker Desktop (ou Docker Engine)
 - `kubectl`
@@ -56,7 +55,7 @@ kubectl version --short
 
 ---
 
-## 🐳 Partie 1 — Docker
+## Partie 1 — Docker
 
 ### Build et run
 
@@ -99,7 +98,7 @@ docker stop hello-app-container && docker rm hello-app-container
 
 ---
 
-## ☸️ Partie 2 — Ressources Kubernetes
+## Partie 2 — Ressources Kubernetes
 
 ### Charger l'image locale dans Minikube
 
@@ -160,7 +159,7 @@ curl $(minikube service hello-nodeport --url)/
 
 ---
 
-## 🔐 Partie 3 — Configuration & stockage
+## Partie 3 — Configuration & stockage
 
 ### Apply de toutes les ressources
 
@@ -200,7 +199,7 @@ curl http://localhost:8081/
 
 ---
 
-## 📸 Capture d'état final du cluster
+## Capture d'état final du cluster
 
 ```bash
 kubectl get all -A > cluster-state.txt
@@ -230,7 +229,7 @@ deployment.apps/hello-deployment   3/3     3            3           5m
 
 ---
 
-## 🧹 Nettoyage complet
+## Nettoyage complet
 
 ```bash
 kubectl delete -f k8s/
@@ -242,7 +241,7 @@ docker rmi hello-app:1.0.0
 
 ---
 
-## 📚 Notes pédagogiques
+## Notes pédagogiques
 
 | Concept           | Implémentation dans ce TP                                         |
 | ----------------- | ----------------------------------------------------------------- |
