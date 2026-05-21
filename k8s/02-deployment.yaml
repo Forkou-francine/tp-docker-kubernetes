@@ -5,7 +5,7 @@ metadata:
   labels:
     app: hello
 spec:
-  replicas: 2          # ⇐ on passera à 3 plus tard via `kubectl scale`
+  replicas: 2          # on passe à 3 plus tard via `kubectl scale`
   selector:
     matchLabels:
       app: hello

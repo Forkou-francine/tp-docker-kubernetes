@@ -1,11 +1,10 @@
 # TP Docker & Kubernetes
 
 **Auteur :** Ange PENE FORKOU
-**Formation :** RNCP 36921 — Expert(e) en Ingénierie des Données — EPSI
 
 ---
 
-## 🎯 Objectif
+## Objectif
 
 Containeriser une application web minimaliste (Python / Flask), puis la déployer
 sur un cluster Kubernetes local (Minikube) en couvrant :
@@ -15,11 +14,11 @@ sur un cluster Kubernetes local (Minikube) en couvrant :
 | 1      | Docker (Dockerfile, build, run)        |   5    |
 | 2      | Ressources Kubernetes (Pod, Deployment, Services) | 9 |
 | 3      | Configuration & stockage (CM, Secret, PVC) |  4   |
-| —      | Livrables (YAML, README, capture)      |   2    |
+| -      | Livrables (YAML, README, capture)      |   2    |
 
 ---
 
-## 🗂️ Arborescence du repo
+## Arborescence du repo
 
 ```
 tp-docker-kubernetes/
@@ -41,7 +40,7 @@ tp-docker-kubernetes/
 
 ---
 
-## ⚙️ Prérequis
+## Prérequis
 
 - Docker Desktop (ou Docker Engine)
 - `kubectl`
@@ -49,6 +48,7 @@ tp-docker-kubernetes/
 - `curl`
 
 ```bash
+winget install Kubernetes.minikube
 minikube start
 minikube status
 kubectl version --short
@@ -56,7 +56,7 @@ kubectl version --short
 
 ---
 
-## 🐳 Partie 1 — Docker
+## Partie 1 - Docker
 
 ### Build et run
 
@@ -99,7 +99,7 @@ docker stop hello-app-container && docker rm hello-app-container
 
 ---
 
-## ☸️ Partie 2 — Ressources Kubernetes
+## Partie 2 - Ressources Kubernetes
 
 ### Charger l'image locale dans Minikube
 
@@ -160,7 +160,7 @@ curl $(minikube service hello-nodeport --url)/
 
 ---
 
-## 🔐 Partie 3 — Configuration & stockage
+## Partie 3 - Configuration & stockage
 
 ### Apply de toutes les ressources
 
@@ -200,7 +200,7 @@ curl http://localhost:8081/
 
 ---
 
-## 📸 Capture d'état final du cluster
+## Capture d'état final du cluster
 
 ```bash
 kubectl get all -A > cluster-state.txt
@@ -230,7 +230,7 @@ deployment.apps/hello-deployment   3/3     3            3           5m
 
 ---
 
-## 🧹 Nettoyage complet
+## Nettoyage complet
 
 ```bash
 kubectl delete -f k8s/
@@ -242,17 +242,17 @@ docker rmi hello-app:1.0.0
 
 ---
 
-## 📚 Notes pédagogiques
+## Notes pédagogiques
 
 | Concept           | Implémentation dans ce TP                                         |
 | ----------------- | ----------------------------------------------------------------- |
 | Image immutable   | `Dockerfile` multi-stage léger (`python:3.12-slim`), utilisateur non-root |
-| Pod               | `01-pod.yaml` — unité atomique de déploiement                     |
-| Deployment        | `02-deployment.yaml` — réplication & rolling update via ReplicaSet|
-| Scaling           | `kubectl scale deployment ... --replicas=3` (impératif)           |
+| Pod               | `01-pod.yaml` - unité atomique de déploiement                     |
+| Deployment        | `02-deployment.yaml` - réplication & rolling update via ReplicaSet|
+| Scaling           | `kubectl scale deployment ... --replicas=3`           |
 | ClusterIP         | Service interne, résolution DNS via `hello-clusterip.default.svc.cluster.local` |
 | NodePort          | Exposition externe sur la plage 30000-32767                       |
 | ConfigMap         | Configuration non sensible (env + fichier monté)                  |
-| Secret            | Identifiants sensibles, encodage base64 (à compléter par Vault en prod) |
+| Secret            | Identifiants sensibles, encodage base64                           |
 | PVC               | Provisioning dynamique via la StorageClass par défaut             |
 | Sondes            | `readinessProbe` + `livenessProbe` sur `/healthz`                 |

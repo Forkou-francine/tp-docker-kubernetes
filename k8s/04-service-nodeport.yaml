@@ -5,7 +5,7 @@ metadata:
   labels:
     app: hello
 spec:
-  type: NodePort         # accessible depuis l'extérieur via <NodeIP>:<NodePort>
+  type: NodePort         
   selector:
     app: hello
   ports:

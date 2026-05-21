@@ -1,17 +1,15 @@
-# --------- Image de base légère ---------
 FROM python:3.12-slim
 
-# Création d'un utilisateur non-root (bonne pratique sécurité)
+# Création d'un utilisateur non-root 
 RUN useradd --create-home --shell /bin/bash appuser
 
 # Répertoire de travail
 WORKDIR /app
 
-# Installation des dépendances en premier (cache Docker optimisé)
+# Installation des dépendances 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copie du code
 COPY app.py .
 
 # Permissions
