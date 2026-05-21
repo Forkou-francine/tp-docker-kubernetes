@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+cluster-state.txt
+*.log
+.DS_Store

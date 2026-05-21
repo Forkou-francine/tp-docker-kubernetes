@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  labels:
+    app: hello
+    tier: frontend
+spec:
+  containers:
+    - name: hello
+      # Si tu utilises ton image locale, charge-la dans Minikube avec :
+      #   minikube image load hello-app:1.0.0
+      # Sinon, tu peux remplacer par : image: nginx:1.27-alpine
+      image: hello-app:1.0.0
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 5000
+          name: http
+      resources:
+        requests:
+          cpu: "50m"
+          memory: "64Mi"
+        limits:
+          cpu: "200m"
+          memory: "128Mi"
+      readinessProbe:
+        httpGet:
+          path: /healthz
+          port: 5000
+        initialDelaySeconds: 2
+        periodSeconds: 5
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 5000
+        initialDelaySeconds: 5
+        periodSeconds: 10

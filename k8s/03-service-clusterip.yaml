@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-clusterip
+  labels:
+    app: hello
+spec:
+  type: ClusterIP        # accessible uniquement à l'intérieur du cluster
+  selector:
+    app: hello           # cible les Pods du Deployment
+  ports:
+    - name: http
+      port: 80           # port exposé par le Service
+      targetPort: 5000   # port du conteneur
+      protocol: TCP

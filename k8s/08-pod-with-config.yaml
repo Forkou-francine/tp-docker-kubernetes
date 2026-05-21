@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod-full
+  labels:
+    app: hello
+    tier: demo-config
+spec:
+  containers:
+    - name: hello
+      image: hello-app:1.0.0
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 5000
+          name: http
+
+      # ─── ConfigMap & Secret injectés en variables d'environnement ───
+      envFrom:
+        - configMapRef:
+            name: hello-config      # APP_ENV, APP_PORT
+        - secretRef:
+            name: hello-secret      # APP_USER, APP_PASSWORD
+
+      # ─── Volumes montés dans le conteneur ───
+      volumeMounts:
+        - name: config-volume       # fichier app.properties depuis le ConfigMap
+          mountPath: /etc/hello
+          readOnly: true
+        - name: data-volume         # stockage persistant
+          mountPath: /data
+
+  volumes:
+    - name: config-volume
+      configMap:
+        name: hello-config
+        items:
+          - key: app.properties
+            path: app.properties
+    - name: data-volume
+      persistentVolumeClaim:
+        claimName: hello-pvc

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hello-pvc
+  labels:
+    app: hello
+spec:
+  accessModes:
+    - ReadWriteOnce        # un seul node en lecture/écriture (suffisant ici)
+  resources:
+    requests:
+      storage: 1Gi
+  # Sur Minikube / Kind / k3s, la StorageClass par défaut (`standard` ou
+  # `local-path`) provisionne dynamiquement un PV. Pas besoin de créer un PV
+  # manuellement.
+  # storageClassName: standard
