@@ -48,6 +48,7 @@ tp-docker-kubernetes/
 - `curl`
 
 ```bash
+winget install Kubernetes.minikube
 minikube start
 minikube status
 kubectl version --short
