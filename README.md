@@ -56,7 +56,7 @@ kubectl version --short
 
 ---
 
-## Partie 1 — Docker
+## Partie 1 - Docker
 
 ### Build et run
 
@@ -99,7 +99,7 @@ docker stop hello-app-container && docker rm hello-app-container
 
 ---
 
-## Partie 2 — Ressources Kubernetes
+## Partie 2 - Ressources Kubernetes
 
 ### Charger l'image locale dans Minikube
 
@@ -160,7 +160,7 @@ curl $(minikube service hello-nodeport --url)/
 
 ---
 
-## Partie 3 — Configuration & stockage
+## Partie 3 - Configuration & stockage
 
 ### Apply de toutes les ressources
 
@@ -247,12 +247,12 @@ docker rmi hello-app:1.0.0
 | Concept           | Implémentation dans ce TP                                         |
 | ----------------- | ----------------------------------------------------------------- |
 | Image immutable   | `Dockerfile` multi-stage léger (`python:3.12-slim`), utilisateur non-root |
-| Pod               | `01-pod.yaml` — unité atomique de déploiement                     |
-| Deployment        | `02-deployment.yaml` — réplication & rolling update via ReplicaSet|
-| Scaling           | `kubectl scale deployment ... --replicas=3` (impératif)           |
+| Pod               | `01-pod.yaml` - unité atomique de déploiement                     |
+| Deployment        | `02-deployment.yaml` - réplication & rolling update via ReplicaSet|
+| Scaling           | `kubectl scale deployment ... --replicas=3`           |
 | ClusterIP         | Service interne, résolution DNS via `hello-clusterip.default.svc.cluster.local` |
 | NodePort          | Exposition externe sur la plage 30000-32767                       |
 | ConfigMap         | Configuration non sensible (env + fichier monté)                  |
-| Secret            | Identifiants sensibles, encodage base64 (à compléter par Vault en prod) |
+| Secret            | Identifiants sensibles, encodage base64                           |
 | PVC               | Provisioning dynamique via la StorageClass par défaut             |
 | Sondes            | `readinessProbe` + `livenessProbe` sur `/healthz`                 |
